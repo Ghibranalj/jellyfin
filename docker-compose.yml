@@ -4,8 +4,6 @@ services:
      image: jellyfin/jellyfin
      container_name: jellyfin
      user: 1000:1000
-     ports:
-       - 8096:8096
      volumes:
        - ./config:/config
        - ./cache:/cache
@@ -23,21 +21,23 @@ services:
         - ./transmission-data:/config
         - ./media:/downloads
       ports:
-        - 9091:9091
         - 51413:51413
         - 51413:51413/udp
       restart: unless-stopped
       cpus: 0.5
+
    nginx:
       image: nginx
       volumes:
-       - ./nginx.conf:/etc/nginx/nginx.conf
-       - ./certbot/www:/var/www/certbot/
-       - ./certbot/conf/:/etc/nginx/ssl/
+        - ./nginx.conf:/etc/nginx/nginx.conf
+        - ./certbot/www:/var/www/certbot/
+        - ./certbot/conf/:/etc/nginx/ssl/
+        - ./.passwd:/.passwd
       ports:
-       - "80:80"
-       - "443:443"
+        - "80:80"
+        - "443:443"
       restart: 'unless-stopped'
+
    certbot:
      image: certbot-renew:latest
      volumes:
