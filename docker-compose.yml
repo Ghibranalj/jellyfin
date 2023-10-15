@@ -42,9 +42,6 @@ services:
       image: filebrowser/filebrowser
       volumes:
         - ./media:/srv
-      # user: 1000:1000
-      ports:
-        - 8080:80
 
    certbot:
      image: certbot-renew:latest
