@@ -6,4 +6,5 @@ services:
       - "80:80"
     volumes:
       - ./certbot/conf:/etc/letsencrypt
-    command: "certonly --standalone --force-renewal --register-unsafely-without-email -d 'streaming.ghibranjaringan.com --agree-tos"
+    command: |
+      certonly --standalone --force-renewal --register-unsafely-without-email -d streaming.ghibranjaringan.com --agree-tos
