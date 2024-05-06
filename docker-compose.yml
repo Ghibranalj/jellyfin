@@ -38,13 +38,3 @@ services:
         - "443:443"
       restart: 'unless-stopped'
 
-   # filebrowser:
-   #    image: filebrowser/filebrowser
-   #    volumes:
-   #      - ./media:/srv
-
-   certbot:
-     image: certbot-renew:latest
-     volumes:
-       - ./certbot/www/:/var/www/certbot/
-       - ./certbot/conf/:/etc/letsencrypt/
