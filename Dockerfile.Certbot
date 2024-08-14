@@ -1,9 +1,0 @@
-FROM certbot/certbot:latest
-
-COPY ./certbot-renew.sh /certbot-renew.sh
-RUN chmod +x /certbot-renew.sh
-#run cron every 30 days
-RUN echo '0 0 1 * * /certbot-renew.sh' >> /var/spool/cron/crontabs/root
-RUN echo 'crond -f -l 8' > /entrypoint.sh
-
-ENTRYPOINT ["sh", "/entrypoint.sh"]
